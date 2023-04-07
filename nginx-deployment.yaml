@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: mydeployment
+  labels:
+    run: mydeployment
+#LABEL-A: <--this label is to manage the deployment itself. this may be used to filter the deployment based on this label. Example usage of LABEL-A is for deployment management, such as filtering.
+  annotations:
+    kubernetes.io/change-cause: my msg 
+  
+spec:
+  replicas: 2
+  selector: 
+    matchLabels: 
+      env: poc
+#LABEL-B: <-- There must be some place where we tell replication controller to manage the pods. This field defines how the Deployment finds which Pods to manage. Based on these labels of the pod, replication controller ensure they are ready.
+  template:
+    metadata:
+        name: mypod
+        labels:
+          env: poc
+#LABEL-C: <--this is the label of the pod, which LABEL-B use to monitor. this must be same as LABEL-B
+    spec:
+      containers:
+         - image: nginx
+           name: node-app
+#           imagePullPolicy: Never
+#whenever we cahnge pod's specifications only that time rollout will trigger

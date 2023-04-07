@@ -1,0 +1,13 @@
+apiVersion: v2
+name: gateway-virtual-service
+version: 0.7.0
+description: A Helm chart for StreamSets Control Hub (SCH).
+icon: https://github.com/streamsets/datacollector/raw/master/basic-lib/src/main/resources/sdcipc.png
+home: https://streamsets.com
+sources:
+- https://github.com/streamsets/helm-charts/tree/master/control-hub
+maintainers:
+  - name: srdev
+    email: seelamnarendra.reddy@hitachivantara.com
+engine: gotpl
+appVersion: 3.17.2
